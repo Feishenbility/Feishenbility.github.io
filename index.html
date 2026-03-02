@@ -1,0 +1,397 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>你的名字 | Personal Website</title>
+  <meta name="description" content="这是我的个人主页，展示我的经历、技能和项目。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1f1c;
+      --bg-soft: #16302b;
+      --card: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.14);
+      --text: #eff8f2;
+      --sub: #c3d8cc;
+      --accent: #ffb84d;
+      --accent-2: #50e3c2;
+      --max: 1080px;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(255, 184, 77, 0.28), transparent 28%),
+        radial-gradient(circle at 90% 5%, rgba(80, 227, 194, 0.18), transparent 30%),
+        linear-gradient(145deg, #102823, #0b1513 58%);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+      z-index: -1;
+    }
+
+    .container {
+      width: min(var(--max), 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(11, 20, 18, 0.7);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Space Mono", monospace;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav a {
+      color: var(--sub);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 0.95rem;
+      transition: color .25s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    section {
+      padding: 84px 0;
+      animation: rise .8s ease both;
+    }
+
+    @keyframes rise {
+      from {opacity: 0; transform: translateY(16px);} 
+      to {opacity: 1; transform: translateY(0);} 
+    }
+
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: grid;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      max-width: 12ch;
+    }
+
+    .hero p {
+      color: var(--sub);
+      max-width: 54ch;
+      margin-bottom: 28px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Space Mono", monospace;
+      font-size: 0.85rem;
+      color: #11231f;
+      background: linear-gradient(110deg, var(--accent), #ffd28b);
+      padding: 10px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .actions a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 16px;
+      margin-right: 10px;
+      transition: all .25s ease;
+    }
+
+    .actions a.primary {
+      color: #11231f;
+      border-color: transparent;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      font-weight: 600;
+    }
+
+    .actions a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--line);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .about {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .about p {
+      color: var(--sub);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tags span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      color: #d5e8de;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project h3 {
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: var(--sub);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .project a {
+      color: var(--accent-2);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact p {
+      color: var(--sub);
+      margin-bottom: 14px;
+    }
+
+    .contact ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0 40px;
+      color: #bdd1c6;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 920px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .projects {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav nav {
+        display: none;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 30px;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .actions a {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-overlay"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">YOUR-NAME</a>
+      <nav>
+        <a href="#about">关于</a>
+        <a href="#skills">技能</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <section class="hero">
+      <div>
+        <div class="pill">Open to Work | 个人主页</div>
+        <h1>你好，我是你的名字，一名专注于产品与工程的开发者。</h1>
+        <p>
+          我擅长将想法快速落地为高质量产品，关注用户体验、系统稳定性和可维护性。
+          这是一份简洁的个人主页模板，你可以直接替换文字与链接后发布到 GitHub Pages。
+        </p>
+        <div class="actions">
+          <a class="primary" href="#projects">查看项目</a>
+          <a href="mailto:your_email@example.com">联系我</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title"><h2>关于我</h2></div>
+      <div class="about">
+        <article class="card">
+          <p>
+            我目前专注于 Web 应用开发、自动化工具和工程效率优化。
+            在过往项目中，我负责过从需求分析、架构设计到上线运维的完整流程。
+          </p>
+        </article>
+        <article class="card">
+          <h3>基础信息</h3>
+          <p>所在地：上海（可远程）</p>
+          <p>教育背景：XX大学 · XX专业</p>
+          <p>工作方向：全栈开发 / 前端工程 / AI 应用</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title"><h2>技能栈</h2></div>
+      <div class="card">
+        <div class="tags">
+          <span>HTML / CSS / JavaScript</span>
+          <span>TypeScript / React / Vue</span>
+          <span>Node.js / Python</span>
+          <span>MySQL / PostgreSQL</span>
+          <span>Docker / CI/CD</span>
+          <span>GitHub / GitHub Actions</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title"><h2>项目经历</h2></div>
+      <div class="projects">
+        <article class="card project">
+          <h3>项目 A：数据看板系统</h3>
+          <p>实现多维数据分析与可视化，支持权限管理与导出功能，显著提升业务决策效率。</p>
+          <a href="#">查看详情</a>
+        </article>
+        <article class="card project">
+          <h3>项目 B：团队协作平台</h3>
+          <p>从 0 到 1 设计任务流与消息模块，优化协作流程，减少沟通成本和任务遗漏。</p>
+          <a href="#">查看详情</a>
+        </article>
+        <article class="card project">
+          <h3>项目 C：自动化脚本工具</h3>
+          <p>封装常见重复操作，支持一键批处理，在日常运营流程中节约大量人工时间。</p>
+          <a href="#">查看详情</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="section-title"><h2>联系我</h2></div>
+      <div class="card">
+        <p>欢迎交流项目合作、技术分享或工作机会。</p>
+        <ul>
+          <li>邮箱：<a href="mailto:your_email@example.com">your_email@example.com</a></li>
+          <li>GitHub：<a href="https://github.com/yourname" target="_blank" rel="noopener noreferrer">https://github.com/yourname</a></li>
+          <li>LinkedIn：<a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/yourname</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> 你的名字. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
